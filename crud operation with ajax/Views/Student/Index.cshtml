@@ -3,9 +3,13 @@
 <head>
     <title>Single_Page</title>
 </head>
-<body>
+<body class="bg-dark bg-opacity-25">
 
-    <h1>Student List</h1>
+   <div class="bg-dark bg-opacity-10 text-center text-success">
+        <h1>Student List</h1>
+   </div>
+   <br />
+
    @*Edit modal template*@
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -75,14 +79,16 @@
 
 
 
+    @*Creating modal template*@
+   
+   <div class="text-end">
+        <button type="button" class="btn btn-primary" data-toggle="modal" id="myModal">
+            Add Student
+        </button>
+   </div>
 
    
-    <button type="button" class="btn btn-primary" data-toggle="modal" id="myModal">
-        Add Student
-    </button>
-
-   <br />
-   @*Creating modal template*@
+   
 
     <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -127,9 +133,13 @@
         </div>
     </div>
 
+    <br />
+    <br />
 
-    <table class="table" id="myTable">
-        <thead>
+    @*table section of the table*@
+
+    <table class="table table-responsive table-hover table-striped" id="myTable">
+        <thead class="text-black-50">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col" id="Name">Student Name</th>
@@ -140,7 +150,7 @@
                 <th scope="col" id="Delete">Delete</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class='text-dark-50'>
         </tbody>
     </table>
 
