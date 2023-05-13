@@ -12,75 +12,97 @@ namespace crud_operation_with_ajax.Controllers
 		private readonly StudentDbContext studentDbContext;
 
 		public StudentController(StudentDbContext studentDbContext)
-        {
+		{
 			this.studentDbContext = studentDbContext;
 		}
+
 		[HttpGet]
 		public IActionResult Index()
 		{
 			return View();
 		}
+
 		[HttpGet]
 		public async Task<JsonResult> ListAllStudent()
 		{
-			var productList = await studentDbContext.students.Where(c => c.Status == "A").ToListAsync();
-
-			return Json(productList);
+			try
+			{
+				var productList = await studentDbContext.students.Where(c => c.Status == "A").ToListAsync();
+				return Json(productList);
+			}
+			catch (Exception ex)
+			{
+				return Json(new { success = false, message = ex.Message });
+			}
 		}
-		
+
 		[HttpPost]
 		public async Task<IActionResult> CreateStudent([FromBody] Student student)
 		{
-			if (ModelState.IsValid)
+			try
 			{
-				
-				await studentDbContext.students.AddAsync(student);
-				await studentDbContext.SaveChangesAsync();
+				if (ModelState.IsValid)
+				{
+					await studentDbContext.students.AddAsync(student);
+					await studentDbContext.SaveChangesAsync();
 
-				return Json(new { success = true, message = "Student created successfully!" });
+					return Json(new { success = true, message = "Student created successfully!" });
+				}
+				return BadRequest(ModelState);
 			}
-
-			return BadRequest(ModelState);
+			catch (Exception ex)
+			{
+				return Json(new { success = false, message = ex.Message });
+			}
 		}
+
 		[HttpPost]
 		public async Task<IActionResult> Update(StudentView model)
 		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-
-			var student = await studentDbContext.students.FindAsync(model.Id);
-
-			if (student == null)
-			{
-				return NotFound();
-			}
-
-			student.Name = model.Name;
-			student.FatherName = model.FatherName;
-			student.Phone = model.Phone;
-			student.Place = model.Place;
-			student.Status = model.Status;
-
 			try
 			{
-				await studentDbContext.SaveChangesAsync();
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				if (!StudentExists(model.Id))
+				if (!ModelState.IsValid)
+				{
+					return BadRequest(ModelState);
+				}
+
+				var student = await studentDbContext.students.FindAsync(model.Id);
+
+				if (student == null)
 				{
 					return NotFound();
 				}
-				else
-				{
-					throw;
-				}
-			}
 
-			return Ok();
+				student.Name = model.Name;
+				student.FatherName = model.FatherName;
+				student.Phone = model.Phone;
+				student.Place = model.Place;
+				student.Status = model.Status;
+
+				try
+				{
+					await studentDbContext.SaveChangesAsync();
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!StudentExists(model.Id))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				return Json(new { success = false, message = ex.Message });
+			}
 		}
+
 		private bool StudentExists(int id)
 		{
 			return studentDbContext.students.Any(e => e.Id == id);
@@ -89,16 +111,24 @@ namespace crud_operation_with_ajax.Controllers
 		[HttpPost, ActionName("Delete")]
 		public async Task<ActionResult> DeleteConfirmed(int id)
 		{
-			var student = await studentDbContext.students.FirstOrDefaultAsync(c => c.Id == id && c.Status == "A");
-
-			if (student == null)
+			try
 			{
-				return NotFound();
-			}
-			student.Status = "D";
+				var student = await studentDbContext.students.FirstOrDefaultAsync(c => c.Id == id && c.Status == "A");
 
-			studentDbContext.SaveChanges();
-			return Json(new { success = true });
+				if (student == null)
+				{
+					return NotFound();
+				}
+				student.Status = "D";
+
+				studentDbContext.SaveChanges();
+				return Json(new { success = true });
+			}
+			catch (Exception ex)
+			{
+				return Json(new { success = false, message = ex.Message });
+			}
 		}
 	}
+
 }
