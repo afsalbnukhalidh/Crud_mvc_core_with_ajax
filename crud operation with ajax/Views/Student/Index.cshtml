@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Single_Page</title>
+</head>
+<body>
+
+    <h1>Student List</h1>
+   @*Edit modal template*@
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Student Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" name="id" id="editId">
+                        <div class="mb-3">
+                            <label for="editName" class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" id="editName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editFatherName" class="form-label">Father's Name</label>
+                            <input type="text" class="form-control" name="fatherName" id="editFatherName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPhone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" name="phone" id="editPhone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPlace" class="form-label">Place</label>
+                            <input type="text" class="form-control" name="place" id="editPlace">
+                        </div>
+                        <div class="mb-3">
+                           
+                            <input type="text" class="form-control d-none" name="status" id="editStatus" value="A">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*Delete modal template*@
+
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="delete-modal-label">Delete Student Record</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this student record?</p>
+                    <p><strong>Name:</strong> <span id="delete-student-name"></span></p>
+                    <p><strong>Father's Name:</strong> <span id="delete-student-fathername"></span></p>
+                    <p><strong>Phone:</strong> <span id="delete-student-phone"></span></p>
+                    <p><strong>Place:</strong> <span id="delete-student-place"></span></p>
+                    <input type="hidden" id="delete-student-id" name="id" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="delete-student-button">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+   
+    <button type="button" class="btn btn-primary" data-toggle="modal" id="myModal">
+        Add Student
+    </button>
+
+   <br />
+   @*Creating modal template*@
+
+    <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Create Student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="createStudentForm">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fatherName">Father Name</label>
+                                <input type="text" class="form-control" id="fatherName" name="fatherName">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="place">Location</label>
+                                <input type="text" class="form-control" id="place" name="place">
+                            </div>
+                            <div class="form-group">
+                                
+                                <input type="text" class="form-control d-none" id="status" name="status" value="A">
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" id="Name">Student Name</th>
+                <th scope="col" id="FatherName">Father Name</th>
+                <th scope="col" id="Phone">Phone Number</th>
+                <th scope="col" id="Place">Location</th>
+                <th scope="col" id="Edit">Edit</th>
+                <th scope="col" id="Delete">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

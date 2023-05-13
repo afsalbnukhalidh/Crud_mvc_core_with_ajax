@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\ADO\\crud operation with ajax\\crud operation with ajax\\crud operation with ajax.csproj": {}
+  },
+  "projects": {
+    "D:\\ADO\\crud operation with ajax\\crud operation with ajax\\crud operation with ajax.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ADO\\crud operation with ajax\\crud operation with ajax\\crud operation with ajax.csproj",
+        "projectName": "crud operation with ajax",
+        "projectPath": "D:\\ADO\\crud operation with ajax\\crud operation with ajax\\crud operation with ajax.csproj",
+        "packagesPath": "C:\\Users\\Afsal K K\\.nuget\\packages\\",
+        "outputPath": "D:\\ADO\\crud operation with ajax\\crud operation with ajax\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Afsal K K\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
